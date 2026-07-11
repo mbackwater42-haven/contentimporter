@@ -1,2 +1,2 @@
-# compendiumimporter
-Imports assets into Foundry VTT Compendiums.
+# contentimporter
+Imports content into Foundry VTT.
