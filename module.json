@@ -1,8 +1,8 @@
 {
   "id": "content-importer",
   "title": "Content Importer",
-  "description": "Browse a folder-organized art collection and drag images onto the scene as Actor-backed Tokens or plain art Tiles.",
-  "version": "0.1.0",
+  "description": "Browse a folder-organized art collection and drag images onto the scene as Tokens or Tiles, plus look up and overwrite any Actor sheet from any world compendium.",
+  "version": "1.0.0",
   "compatibility": {
     "minimum": "14",
     "verified": "14"
