@@ -1,0 +1,199 @@
+.content-importer.art-browser .content-importer-root {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  height: 100%;
+}
+
+.content-importer .hint {
+  margin: 0;
+  font-size: var(--font-size-12, 12px);
+  opacity: 0.75;
+}
+
+.content-importer .toolbar {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.content-importer .toolbar .art-search {
+  flex: 1;
+}
+
+.content-importer .content-importer-body {
+  display: flex;
+  flex: 1;
+  min-height: 0;
+  gap: 0.5rem;
+}
+
+.content-importer .art-tree {
+  width: 180px;
+  flex: 0 0 180px;
+  overflow-y: auto;
+  border-right: 1px solid var(--color-border-light-tertiary, #999);
+  padding-right: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.content-importer .art-tree .tree-item {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  flex: none;
+  padding: 2px 4px;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+.content-importer .art-tree .tree-item:hover {
+  background: var(--color-bg-hover, rgba(0, 0, 0, 0.1));
+}
+
+.content-importer .art-tree .tree-item.active {
+  background: var(--color-bg-highlight, rgba(0, 0, 0, 0.2));
+  font-weight: bold;
+}
+
+.content-importer .art-tree .tree-item-label {
+  flex: 1 1 auto;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.content-importer .art-tree .tree-toggle,
+.content-importer .art-tree .tree-toggle-spacer {
+  flex: none;
+  width: 12px;
+  text-align: center;
+  font-size: 0.85em;
+}
+
+.content-importer .art-tree .tree-toggle {
+  cursor: pointer;
+  opacity: 0.7;
+}
+
+.content-importer .art-tree .tree-toggle:hover {
+  opacity: 1;
+}
+
+.content-importer .art-grid {
+  flex: 1;
+  overflow-y: auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(96px, 1fr));
+  gap: 6px;
+  align-content: start;
+}
+
+.content-importer .art-thumb {
+  cursor: grab;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 4px;
+  padding: 4px;
+}
+
+.content-importer .art-thumb:hover {
+  background: var(--color-bg-hover, rgba(0, 0, 0, 0.1));
+}
+
+.content-importer .art-thumb-media {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  border-radius: 3px;
+  pointer-events: none;
+}
+
+.content-importer .art-thumb-generic {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--color-bg-hover, rgba(0, 0, 0, 0.15));
+  font-size: 1.8em;
+  opacity: 0.6;
+}
+
+.content-importer .art-thumb-name {
+  font-size: var(--font-size-10, 10px);
+  text-align: center;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
+}
+
+/* ---------------------------------------- */
+/*  Compendium Import Dialog                */
+/* ---------------------------------------- */
+
+.content-importer.compendium-import-dialog .ci-import-root {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  height: 100%;
+}
+
+.content-importer .ci-results {
+  flex: 1;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.content-importer .ci-result {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 4px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.content-importer .ci-result:hover {
+  background: var(--color-bg-hover, rgba(0, 0, 0, 0.1));
+}
+
+.content-importer .ci-result.selected {
+  background: var(--color-bg-highlight, rgba(0, 0, 0, 0.2));
+  outline: 1px solid var(--color-border-highlight, #ff6400);
+}
+
+.content-importer .ci-result-img {
+  width: 36px;
+  height: 36px;
+  object-fit: cover;
+  border-radius: 3px;
+  flex: none;
+}
+
+.content-importer .ci-result-info {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.content-importer .ci-result-name {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.content-importer .ci-result-pack {
+  font-size: var(--font-size-10, 10px);
+  opacity: 0.7;
+}
+
+.content-importer .ci-footer {
+  display: flex;
+  justify-content: flex-end;
+}

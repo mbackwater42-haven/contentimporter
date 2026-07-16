@@ -1,0 +1,22 @@
+<div class="ci-import-root">
+  <p class="hint">{{localize "CONTENT-IMPORTER.CompendiumImport.Hint"}}</p>
+  <input type="search" class="ci-search" value="{{query}}" placeholder="{{localize 'CONTENT-IMPORTER.CompendiumImport.SearchPlaceholder'}}">
+  <div class="ci-results">
+    {{#each results}}
+      <div class="ci-result{{#if (eq this.uuid ../selected)}} selected{{/if}}" data-uuid="{{this.uuid}}">
+        <img src="{{this.img}}" class="ci-result-img" alt="">
+        <div class="ci-result-info">
+          <span class="ci-result-name">{{this.name}}</span>
+          <span class="ci-result-pack">{{this.packLabel}}</span>
+        </div>
+      </div>
+    {{else}}
+      <p class="notice">{{localize "CONTENT-IMPORTER.CompendiumImport.NoResults"}}</p>
+    {{/each}}
+  </div>
+  <footer class="ci-footer">
+    <button type="button" data-action="import" {{#unless selected}}disabled{{/unless}}>
+      <i class="fa-solid fa-cloud-arrow-down"></i> {{localize "CONTENT-IMPORTER.CompendiumImport.ImportButton"}}
+    </button>
+  </footer>
+</div>

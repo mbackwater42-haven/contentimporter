@@ -1,0 +1,56 @@
+<div class="content-importer-root">
+  <p class="hint">{{localize "CONTENT-IMPORTER.Browser.Hint"}}</p>
+
+  {{#unless rootPath}}
+    <p class="notice">{{localize "CONTENT-IMPORTER.Browser.NoRootPath"}}</p>
+  {{else}}
+    <div class="toolbar">
+      <input type="search" class="art-search" placeholder="{{localize 'CONTENT-IMPORTER.Browser.SearchPlaceholder'}}">
+      <button type="button" data-action="toggleAllFolders" title="{{localize 'CONTENT-IMPORTER.Browser.ToggleAllFolders'}}">
+        <i class="fa-solid fa-folder-tree"></i>
+      </button>
+      <button type="button" data-action="rescan">
+        <i class="fa-solid fa-arrows-rotate"></i> {{localize "CONTENT-IMPORTER.Browser.Rescan"}}
+      </button>
+    </div>
+
+    {{#if loading}}
+      <p class="notice">{{localize "CONTENT-IMPORTER.Browser.Loading"}}</p>
+    {{else}}
+      <div class="content-importer-body">
+        <nav class="art-tree">
+          <a class="tree-item active" data-folder-path="">
+            <i class="tree-toggle-spacer"></i>
+            <span class="tree-item-label">{{localize "CONTENT-IMPORTER.Browser.AllFolders"}}</span>
+          </a>
+          {{#each treeNodes}}
+            <a class="tree-item" data-folder-path="{{this.path}}" data-depth="{{this.depth}}" style="padding-left: {{this.indent}}px" {{#if this.hidden}}hidden{{/if}}>
+              {{#if this.hasChildren}}
+                <i class="fa-solid {{#if this.collapsed}}fa-caret-right{{else}}fa-caret-down{{/if}} tree-toggle" data-toggle></i>
+              {{else}}
+                <i class="tree-toggle-spacer"></i>
+              {{/if}}
+              <span class="tree-item-label">{{this.name}}</span>
+            </a>
+          {{/each}}
+        </nav>
+        <div class="art-grid">
+          {{#each files}}
+            <div class="art-thumb" draggable="true" data-path="{{this.path}}" data-folder="{{this.folder}}" title="{{this.name}}">
+              {{#if this.isVideo}}
+                <video class="art-thumb-media" src="{{this.path}}" muted loop autoplay playsinline></video>
+              {{else if this.isOther}}
+                <div class="art-thumb-media art-thumb-generic"><i class="fa-solid fa-file"></i></div>
+              {{else}}
+                <img class="art-thumb-media" src="{{this.path}}" loading="lazy" alt="{{this.name}}">
+              {{/if}}
+              <span class="art-thumb-name">{{this.name}}</span>
+            </div>
+          {{else}}
+            <p class="notice">{{localize "CONTENT-IMPORTER.Browser.Empty"}}</p>
+          {{/each}}
+        </div>
+      </div>
+    {{/if}}
+  {{/unless}}
+</div>

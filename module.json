@@ -1,0 +1,24 @@
+{
+  "id": "content-importer",
+  "title": "Content Importer",
+  "description": "Browse a folder-organized art collection and drag images onto the scene as Actor-backed Tokens or plain art Tiles.",
+  "version": "0.1.0",
+  "compatibility": {
+    "minimum": "14",
+    "verified": "14"
+  },
+  "esmodules": [
+    "scripts/module.mjs"
+  ],
+  "styles": [
+    "styles/content-importer.css"
+  ],
+  "languages": [
+    {
+      "lang": "en",
+      "name": "English",
+      "path": "lang/en.json"
+    }
+  ],
+  "authors": []
+}
