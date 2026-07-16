@@ -11,6 +11,10 @@
 - [x] Real-world playtest with actual token art collection (`assets/images/import`).
 - [x] Git repo initialized, committed, pushed to GitHub.
 - [x] Tagged v1.0.
+- [x] `gh` CLI installed + authenticated; git wired to use it (no more pasting tokens).
+- [x] Exposed PAT revoked on GitHub.
+- [x] `main` set as default branch (merged with GitHub's auto-init README); stale
+      `master` branch deleted from GitHub.
 
 ## Phase 2 (not started)
 - [ ] Audio import
