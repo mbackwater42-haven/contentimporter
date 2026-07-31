@@ -3,6 +3,8 @@
   "title": "Content Importer",
   "description": "Browse a folder-organized art collection and drag images onto the scene as Tokens or Tiles, plus look up and overwrite any Actor sheet from any world compendium.",
   "version": "1.0.0",
+  "manifest": "https://raw.githubusercontent.com/mbackwater42-haven/contentimporter/main/module.json",
+  "download": "https://github.com/mbackwater42-haven/contentimporter/archive/refs/heads/main.zip",
   "compatibility": {
     "minimum": "14",
     "verified": "14"
