@@ -52,11 +52,12 @@ export default class ArtBrowser extends HandlebarsApplicationMixin(ApplicationV2
   /** @type {boolean} */
   _loading = false;
 
-  #search = new foundry.applications.ux.SearchFilter({
-    inputSelector: ".art-search",
-    contentSelector: ".art-grid",
-    callback: this._onSearchFilter.bind(this)
-  });
+  /**
+   * The last search term actually applied (via Enter or the search button), as opposed to
+   * whatever's currently typed but not yet submitted.
+   * @type {string}
+   */
+  _appliedQuery = "";
 
   /* -------------------------------------------- */
 
@@ -99,16 +100,14 @@ export default class ArtBrowser extends HandlebarsApplicationMixin(ApplicationV2
   /** @override */
   async _onRender(context, options) {
     await super._onRender(context, options);
-    this.#search.bind(this.element);
+    const searchInput = this.element.querySelector(".art-search");
+    if (searchInput) searchInput.value = this._appliedQuery;
+    searchInput?.addEventListener("keydown", this.#onSearchKeydown.bind(this));
+    this.element.querySelector("[data-action=search]")?.addEventListener("click", this.#onSearchClick.bind(this));
     this.element.querySelector(".art-tree")?.addEventListener("click", this.#onTreeClick.bind(this));
     const grid = this.element.querySelector(".art-grid");
     grid?.addEventListener("dragstart", this.#onGridDragStart.bind(this));
-  }
-
-  /** @override */
-  _tearDown(options) {
-    super._tearDown(options);
-    this.#search.unbind();
+    this.#applyFilter();
   }
 
   /* -------------------------------------------- */
@@ -196,7 +195,7 @@ export default class ArtBrowser extends HandlebarsApplicationMixin(ApplicationV2
     this._activeFolder = item.dataset.folderPath || null;
     for (const el of this.element.querySelectorAll(".art-tree .active")) el.classList.remove("active");
     item.classList.add("active");
-    this.#search.filter(null, this.#search.query);
+    this.#applyFilter();
   }
 
   /**
@@ -229,10 +228,35 @@ export default class ArtBrowser extends HandlebarsApplicationMixin(ApplicationV2
     return folder === this._activeFolder || folder.startsWith(`${this._activeFolder}/`);
   }
 
-  _onSearchFilter(_event, query, rgx, content) {
-    if (!content) return;
+  /**
+   * Submit the search box's current value as the applied query and re-filter. Triggered
+   * only by Enter or the search button — not per-keystroke — so Foundry core's
+   * SearchFilter (which reassigns the input's value on every "input" event) never runs
+   * while the user is actively typing.
+   */
+  #onSearchKeydown(event) {
+    if (event.key !== "Enter") return;
+    event.preventDefault();
+    this.#submitSearch();
+  }
+
+  #onSearchClick() {
+    this.#submitSearch();
+  }
+
+  #submitSearch() {
+    const input = this.element.querySelector(".art-search");
+    this._appliedQuery = input?.value ?? "";
+    this.#applyFilter();
+  }
+
+  #applyFilter() {
+    const grid = this.element.querySelector(".art-grid");
+    if (!grid) return;
     const SearchFilter = foundry.applications.ux.SearchFilter;
-    for (const thumb of content.querySelectorAll(".art-thumb")) {
+    const query = SearchFilter.cleanQuery(this._appliedQuery);
+    const rgx = new RegExp(RegExp.escape(query), "i");
+    for (const thumb of grid.querySelectorAll(".art-thumb")) {
       const matchesText = !query || rgx.test(SearchFilter.cleanQuery(thumb.dataset.path));
       thumb.hidden = !(matchesText && this.#inActiveFolder(thumb.dataset.folder));
     }

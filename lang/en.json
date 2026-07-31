@@ -4,6 +4,7 @@
   "CONTENT-IMPORTER.Browser.Title": "Art Browser",
   "CONTENT-IMPORTER.Browser.AllFolders": "All",
   "CONTENT-IMPORTER.Browser.SearchPlaceholder": "Search images…",
+  "CONTENT-IMPORTER.Browser.Search": "Search (or press Enter)",
   "CONTENT-IMPORTER.Browser.Hint": "Drag = Token (no Actor) · Alt+Drag = Art only · Ctrl+Drag = Actor-backed Token",
   "CONTENT-IMPORTER.Browser.Rescan": "Rescan",
   "CONTENT-IMPORTER.Browser.ToggleAllFolders": "Collapse/Expand All Folders",
