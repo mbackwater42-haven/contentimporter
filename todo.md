@@ -15,6 +15,19 @@
 - [x] Exposed PAT revoked on GitHub.
 - [x] `main` set as default branch (merged with GitHub's auto-init README); stale
       `master` branch deleted from GitHub.
+- [x] Search-on-submit fix (was filtering per-keystroke, dropping input focus).
+- [x] Recovered from `/mnt/foundryvtt/data/modules/` deletion (all modules, not just
+      ours); reinstalled via Setup → Install Module manifest URL, repo made public,
+      `manifest`/`download` fields added to `module.json`. See status.md Incidents.
+- [x] `v1.0.0` tag moved to current HEAD to cover the above fixes.
+
+## Consider for later
+- [ ] Persist the dev bind mount across reboots (add `/etc/fstab` entry) — currently
+      manual after any server restart.
+- [ ] `raw.githubusercontent.com` served a stale `module.json` for an extended period
+      after edits; jsDelivr (`cdn.jsdelivr.net/gh/...`) worked immediately and is now the
+      documented install URL. Worth rechecking raw.githubusercontent's behavior later —
+      may just have been unlucky cache timing tied to the private→public transition.
 
 ## Phase 2 (not started)
 - [ ] Audio import

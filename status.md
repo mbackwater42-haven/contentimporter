@@ -1,11 +1,35 @@
 # Status: (contentimporter)
 
-_Last updated: 2026-07-16_
+_Last updated: 2026-07-30_
 
 ## Current State: v1.0 released
 
 `module.json` version `1.0.0`. Committed and pushed to
-`github.com/mbackwater42-haven/contentimporter` (`main` branch, default).
+`github.com/mbackwater42-haven/contentimporter` (`main` branch, default). `v1.0.0` tag
+points at the current HEAD (moved forward from the initial tag to include the search fix
+and install-manifest fix below).
+
+**Repo is public** (required — see Install section below).
+
+### Install / reinstall
+The `/mnt/foundryvtt/data/modules/` folder was deleted entirely at one point (see
+Incidents below), which led to settling on this as the supported install path instead of
+manual folder placement:
+
+- **Setup → Install Module**, manifest URL: `https://cdn.jsdelivr.net/gh/mbackwater42-haven/contentimporter@main/module.json`
+  Use the jsDelivr URL, not `raw.githubusercontent.com` directly — GitHub's raw CDN cached
+  a stale (pre-fix) copy of `module.json` for an extended period after a repo edit;
+  jsDelivr reflected the update immediately.
+- `module.json` carries `manifest` + `download` fields (the latter pointing at GitHub's
+  `main` branch zipball) — both are required for Foundry's direct-URL install flow; a bare
+  manifest URL without `download` fails with "does not provide a download URL that can be
+  installed".
+- The dev bind mount (`/mnt/foundryvtt/data/modules/content-importer` →
+  `~/Projects/contentimporter`) survived the reinstall — Foundry's ZIP install wrote
+  through it since it's transparent at the filesystem level, and the content matched
+  exactly (same commit), so live-editing still works with zero reconciliation needed.
+  Not persisted across reboots — no fstab entry added yet; if the server reboots, recreate
+  with `sudo mount --bind ~/Projects/contentimporter /mnt/foundryvtt/data/modules/content-importer`.
 
 ### Art Browser
 Toolbar button (Token controls group) opens a floating Art Browser window over the
@@ -14,7 +38,10 @@ configured "Art Collection Folder".
 - Folder tree mirrors disk structure, collapsible per-folder, state persisted per-client
   (defaults to fully collapsed on first-ever open, then remembers where you left it) —
   plus a Collapse/Expand All toggle.
-- Live search filter across the current folder scope.
+- Search-on-submit (Enter or the search button), not per-keystroke — Foundry core's
+  `SearchFilter` reassigns the input's value on every keystroke, which was dropping focus
+  on the user's real (loaded/no-GPU) machine. Fixed by not calling it at all; filtering
+  only runs on explicit submit now.
 - Three drag modes, verified live against the real world (`cursed-dragon-of-phandelver`):
   - **Plain drag** → decorative Token with `actorId: null`. No sheet, no Actors sidebar
     entry — for background NPCs players won't interact with.
@@ -45,6 +72,27 @@ over to non-dnd5e systems (e.g. Pathfinder) later.
 - Token/prototype-token resize "reverting" turned out to be a browser cache issue on the
   user's end, not a module bug. Confirmed via direct API testing that both placed-token
   and prototype-token width/height updates persist correctly.
+- Terminal/browser crashes on the user's desktop traced to `libvulkan_lvp.so` (Mesa
+  software Vulkan/llvmpipe) segfaulting under load — this VM has no real GPU. Unrelated to
+  Foundry or the module; no fix applied per user's call (not a priority).
+
+## Incidents
+- **2026-07-30: entire `/mnt/foundryvtt/data/modules/` folder deleted** (all 12 installed
+  modules, not just this one). Root cause of removal itself unconfirmed. Recovery:
+  - Rebuilt the module list from the world's `core.moduleConfiguration` setting (still
+    present in the world's LevelDB even with folders gone) — read via Foundry's own
+    `classic-level` package directly, since raw `strings`/grep on the `.ldb` file
+    truncated mid-value.
+  - Restoring the folder (symlink, then a bind mount after ruling out symlink-avoidance)
+    was **not enough** — Foundry's local package discovery kept silently excluding
+    content-importer even after full process restarts, despite the manifest being valid,
+    readable, and correctly named at every filesystem-level check. Root cause not
+    conclusively identified (suspect a discovery-cache layer not invalidated by a plain
+    folder restore).
+  - Resolved by reinstalling through Foundry's actual supported flow instead
+    (Setup → Install Module → manifest URL), which sidesteps whatever that local-discovery
+    issue was. Required making the repo public + adding `manifest`/`download` fields to
+    `module.json` (see Install section above).
 
 ## Environment notes
 - Git repo initialized this session (didn't exist before); local identity set to
