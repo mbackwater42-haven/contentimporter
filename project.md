@@ -8,10 +8,10 @@ In scope - Images, text, sounds, animations, and any other content supported by 
 Out of scope - modules, plugins, or other code not related to content. Any work on anything not related to Foundry VTT or the module we are building.
 
 ## Status
-**v1.0 released** (2026-07-30, `v1.0.0` tag). Image import (Art Browser) and
-cross-compendium Actor lookup/import both shipped and verified live, working install
-recovered after a module-folder deletion incident. See status.md for details, todo.md for
-what's next.
+**v1.0.1** (2026-08-03, `v1.0.1` tag). Image import (Art Browser) and cross-compendium
+Actor lookup/import both shipped and verified live, working install recovered after a
+module-folder deletion incident. v1.0.1 fixes the same search-focus bug in the Compendium
+Import dialog. See status.md for details, todo.md for what's next.
 
 ## Notes
 Working directory is "/home/foundry/Projects/contentimporter/"
