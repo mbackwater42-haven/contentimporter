@@ -17,5 +17,5 @@ Import dialog. See status.md for details, todo.md for what's next.
 Working directory is "/home/foundry/Projects/contentimporter/"
 Github is "https://github.com/mbackwater42-haven/contentimporter.git" (**public**)
 Install via Setup → Install Module, manifest URL:
-`https://cdn.jsdelivr.net/gh/mbackwater42-haven/contentimporter@main/module.json`
+`https://cdn.jsdelivr.net/gh/mbackwater42-haven/contentimporter@v1.0.1/module.json`
 Screenshots are in "/mnt/foundryvtt/data/Data/techsupport/screenshots/"

@@ -16,10 +16,12 @@ The `/mnt/foundryvtt/data/modules/` folder was deleted entirely at one point (se
 Incidents below), which led to settling on this as the supported install path instead of
 manual folder placement:
 
-- **Setup → Install Module**, manifest URL: `https://cdn.jsdelivr.net/gh/mbackwater42-haven/contentimporter@main/module.json`
+- **Setup → Install Module**, manifest URL: `https://cdn.jsdelivr.net/gh/mbackwater42-haven/contentimporter@v1.0.1/module.json`
   Use the jsDelivr URL, not `raw.githubusercontent.com` directly — GitHub's raw CDN cached
   a stale (pre-fix) copy of `module.json` for an extended period after a repo edit;
-  jsDelivr reflected the update immediately.
+  jsDelivr reflected the update immediately. Pinned to the `v1.0.1` tag now instead of
+  `main` — `module.json`'s own `manifest`/`download` fields point at the same tag, so bump
+  both together on each release.
 - `module.json` carries `manifest` + `download` fields (the latter pointing at GitHub's
   `main` branch zipball) — both are required for Foundry's direct-URL install flow; a bare
   manifest URL without `download` fails with "does not provide a download URL that can be
