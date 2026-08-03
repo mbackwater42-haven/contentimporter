@@ -67,7 +67,7 @@ over to non-dnd5e systems (e.g. Pathfinder) later.
   Two-step confirm (select → Import → Yes/No dialog) before anything destructive happens.
 - Search-on-submit (Enter or the search button), not per-keystroke — same root cause as the
   Art Browser fix (debounced `input` listener + full re-render was dropping focus). Fixed
-  2026-08-03.
+  2026-08-03, user-confirmed working in both live games after installing v1.0.1.
 - Verified live end-to-end: real click-through (search → select → import → confirm)
   against the DDB Monsters compendium, correcting a filename-derived name
   ("Dragon Amethyst") to the real stat block ("Young Amethyst Dragon", 168 HP, 10 items),

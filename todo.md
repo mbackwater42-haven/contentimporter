@@ -22,6 +22,7 @@
 - [x] `v1.0.0` tag moved to current HEAD to cover the above fixes.
 - [x] Search-on-submit fix applied to the Compendium Import dialog too (same debounced
       per-keystroke re-render bug, found in a second spot after the Art Browser fix).
+- [x] v1.0.1 installed on the live server, confirmed working in both games.
 
 ## Consider for later
 - [ ] Persist the dev bind mount across reboots (add `/etc/fstab` entry) — currently
