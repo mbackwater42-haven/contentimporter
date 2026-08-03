@@ -1,6 +1,6 @@
 # Status: (contentimporter)
 
-_Last updated: 2026-07-30_
+_Last updated: 2026-08-03_
 
 ## Current State: v1.0 released
 
@@ -63,6 +63,9 @@ over to non-dnd5e systems (e.g. Pathfinder) later.
 - Import overwrites `name`, `type`, `system`, `items`, `effects` from the selected
   compendium Actor. Leaves `img`/token art untouched.
   Two-step confirm (select → Import → Yes/No dialog) before anything destructive happens.
+- Search-on-submit (Enter or the search button), not per-keystroke — same root cause as the
+  Art Browser fix (debounced `input` listener + full re-render was dropping focus). Fixed
+  2026-08-03.
 - Verified live end-to-end: real click-through (search → select → import → confirm)
   against the DDB Monsters compendium, correcting a filename-derived name
   ("Dragon Amethyst") to the real stat block ("Young Amethyst Dragon", 168 HP, 10 items),
@@ -97,7 +100,10 @@ over to non-dnd5e systems (e.g. Pathfinder) later.
 ## Environment notes
 - Git repo initialized this session (didn't exist before); local identity set to
   `mbackwater42-haven` / user's email, scoped to this repo only (not global).
-- Playwright MCP used for all live verification (real browser, real world).
+- Playwright MCP used for live verification through v1.0. Dropped as of 2026-08-03 per user
+  request — user is normally logged into the world live and tests changes themselves;
+  Playwright also risks colliding with the single GM session slot. CLAUDE.md's Default
+  behavior section updated accordingly.
 - `gh` CLI installed and authenticated (device-flow, plaintext token storage — no desktop
   secret-service available on this headless server). `gh auth setup-git` wires git to use
   it automatically, so no more pasting PATs into chat for push/pull.
