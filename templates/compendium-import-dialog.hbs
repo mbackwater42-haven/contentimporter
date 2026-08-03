@@ -1,6 +1,9 @@
 <div class="ci-import-root">
   <p class="hint">{{localize "CONTENT-IMPORTER.CompendiumImport.Hint"}}</p>
-  <input type="search" class="ci-search" value="{{query}}" placeholder="{{localize 'CONTENT-IMPORTER.CompendiumImport.SearchPlaceholder'}}">
+  <div class="ci-search-row">
+    <input type="search" class="ci-search" value="{{query}}" placeholder="{{localize 'CONTENT-IMPORTER.CompendiumImport.SearchPlaceholder'}}">
+    <button type="button" class="ci-search-btn" data-action="search" title="{{localize 'CONTENT-IMPORTER.CompendiumImport.Search'}}"><i class="fa-solid fa-magnifying-glass"></i></button>
+  </div>
   <div class="ci-results">
     {{#each results}}
       <div class="ci-result{{#if (eq this.uuid ../selected)}} selected{{/if}}" data-uuid="{{this.uuid}}">

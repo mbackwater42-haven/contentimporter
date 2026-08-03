@@ -142,6 +142,16 @@
   height: 100%;
 }
 
+.content-importer .ci-search-row {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.content-importer .ci-search-row .ci-search {
+  flex: 1;
+}
+
 .content-importer .ci-results {
   flex: 1;
   overflow-y: auto;

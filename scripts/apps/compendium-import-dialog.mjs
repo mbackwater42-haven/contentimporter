@@ -69,12 +69,24 @@ export default class CompendiumImportDialog extends HandlebarsApplicationMixin(A
   async _onRender(context, options) {
     await super._onRender(context, options);
     const input = this.element.querySelector(".ci-search");
-    input?.addEventListener("input", foundry.utils.debounce(this.#onSearchInput.bind(this), 200));
+    input?.addEventListener("keydown", this.#onSearchKeydown.bind(this));
+    this.element.querySelector("[data-action=search]")?.addEventListener("click", this.#onSubmitSearch.bind(this));
     this.element.querySelector(".ci-results")?.addEventListener("click", this.#onResultClick.bind(this));
   }
 
-  #onSearchInput(event) {
-    this._query = event.target.value;
+  /**
+   * Only filter on explicit submit (Enter or the search button) — filtering per keystroke
+   * re-renders the whole dialog and drops input focus, same issue as the Art Browser.
+   */
+  #onSearchKeydown(event) {
+    if (event.key !== "Enter") return;
+    event.preventDefault();
+    this.#onSubmitSearch();
+  }
+
+  #onSubmitSearch() {
+    const input = this.element.querySelector(".ci-search");
+    this._query = input?.value ?? "";
     this._selected = null;
     this.render();
   }
