@@ -28,9 +28,7 @@
 
 ## Consider for later
 - [x] v1.0.2 released 2026-11-05 (tagged, pushed).
-- [ ] Bind mount found inactive 2026-11-05 (Data copy had drifted); re-establish it + fstab entry, or deploy via a script like avautojoin's `deploy.sh`.
-- [ ] Persist the dev bind mount across reboots (add `/etc/fstab` entry) — currently
-      manual after any server restart.
+- [x] Bind mount restored + fstab entry 2026-11-05 (verify after next reboot; delete `~/Projects/contentimporter-datacopy-bak`).
 - [ ] `raw.githubusercontent.com` served a stale `module.json` for an extended period
       after edits; jsDelivr (`cdn.jsdelivr.net/gh/...`) worked immediately and is now the
       documented install URL. Worth rechecking raw.githubusercontent's behavior later —

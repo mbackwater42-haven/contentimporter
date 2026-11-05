@@ -30,8 +30,7 @@ manual folder placement:
   `~/Projects/contentimporter`) survived the reinstall — Foundry's ZIP install wrote
   through it since it's transparent at the filesystem level, and the content matched
   exactly (same commit), so live-editing still works with zero reconciliation needed.
-  Not persisted across reboots — no fstab entry added yet; if the server reboots, recreate
-  with `sudo mount --bind ~/Projects/contentimporter /mnt/foundryvtt/data/modules/content-importer`.
+  Persisted via `/etc/fstab` as of 2026-11-05 (see below).
 
 ### Art Browser
 Toolbar button (Token controls group) opens a floating Art Browser window over the
@@ -116,7 +115,7 @@ over to non-dnd5e systems (e.g. Pathfinder) later.
   the repo's default branch, and the old `master` branch was deleted from GitHub.
 
 - 2026-11-05: Fixed search-clear bug (released as v1.0.2, 2026-11-05). Art Browser and Compendium Import dialog apply search only on Enter/button; the native "x" on `type=search` cleared the input but left `_appliedQuery` / `_query` stale, so category clicks re-filtered with the old term until a hard refresh. Fix: listen for the `search` event (fires on "x") and re-apply when the box is empty. User-confirmed working live 2026-11-05.
-- 2026-11-05: Dev bind mount is NOT active (Data/modules/content-importer was a stale standalone copy that lagged this repo). Repo is source of truth; sync code/docs into the Data copy manually until the mount is restored (see todo.md).
+- 2026-11-05: Bind mount found inactive (Data/modules/content-importer had become a stale standalone copy). Restored: `~/Projects/contentimporter` -> `/mnt/foundryvtt/data/Data/modules/content-importer` (note the `Data/` in the path; earlier notes omitted it), persisted in `/etc/fstab` (`bind,x-systemd.requires-mounts-for=/mnt/foundryvtt`; fstab backup `/etc/fstab.bak.20261105`). Pre-mount copy (identical to repo) kept at `~/Projects/contentimporter-datacopy-bak`, safe to delete. Repo edits are now live with no manual sync. Reboot not yet tested.
 
 ## Blockers
 None. Ready for real-world use.
