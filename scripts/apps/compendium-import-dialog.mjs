@@ -70,6 +70,10 @@ export default class CompendiumImportDialog extends HandlebarsApplicationMixin(A
     await super._onRender(context, options);
     const input = this.element.querySelector(".ci-search");
     input?.addEventListener("keydown", this.#onSearchKeydown.bind(this));
+    // Native "x" clear on type=search fires "search" with empty value.
+    input?.addEventListener("search", () => {
+      if (!input.value && this._query) this.#onSubmitSearch();
+    });
     this.element.querySelector("[data-action=search]")?.addEventListener("click", this.#onSubmitSearch.bind(this));
     this.element.querySelector(".ci-results")?.addEventListener("click", this.#onResultClick.bind(this));
   }

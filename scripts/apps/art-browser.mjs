@@ -103,6 +103,11 @@ export default class ArtBrowser extends HandlebarsApplicationMixin(ApplicationV2
     const searchInput = this.element.querySelector(".art-search");
     if (searchInput) searchInput.value = this._appliedQuery;
     searchInput?.addEventListener("keydown", this.#onSearchKeydown.bind(this));
+    // Native "x" clear button on type=search fires "search" with an empty value; apply it so
+    // _appliedQuery doesn't keep the stale term.
+    searchInput?.addEventListener("search", () => {
+      if (!searchInput.value) this.#submitSearch();
+    });
     this.element.querySelector("[data-action=search]")?.addEventListener("click", this.#onSearchClick.bind(this));
     this.element.querySelector(".art-tree")?.addEventListener("click", this.#onTreeClick.bind(this));
     const grid = this.element.querySelector(".art-grid");

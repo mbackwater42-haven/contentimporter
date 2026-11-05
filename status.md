@@ -1,6 +1,6 @@
 # Status: (contentimporter)
 
-_Last updated: 2026-08-03_
+_Last updated: 2026-11-05_
 
 ## Current State: v1.0 released
 
@@ -114,6 +114,9 @@ over to non-dnd5e systems (e.g. Pathfinder) later.
 - Remote branch cleanup: GitHub's auto-created `main` (just a README) was merged with our
   `master` history (`--allow-unrelated-histories`, no conflicts), pushed as `main`, set as
   the repo's default branch, and the old `master` branch was deleted from GitHub.
+
+- 2026-11-05: Fixed search-clear bug (post-v1.0.1, committed on `main`, **not yet tagged/released**; live server has the patched files copied in directly). Art Browser and Compendium Import dialog apply search only on Enter/button; the native "x" on `type=search` cleared the input but left `_appliedQuery` / `_query` stale, so category clicks re-filtered with the old term until a hard refresh. Fix: listen for the `search` event (fires on "x") and re-apply when the box is empty. Not yet confirmed live in-game.
+- 2026-11-05: Dev bind mount is NOT active (Data/modules/content-importer was a stale standalone copy that lagged this repo). Repo is source of truth; sync code/docs into the Data copy manually until the mount is restored (see todo.md).
 
 ## Blockers
 None. Ready for real-world use.
