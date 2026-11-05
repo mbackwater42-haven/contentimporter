@@ -8,7 +8,7 @@ In scope - Images, text, sounds, animations, and any other content supported by 
 Out of scope - modules, plugins, or other code not related to content. Any work on anything not related to Foundry VTT or the module we are building.
 
 ## Status
-**v1.0.1** (2026-08-03, `v1.0.1` tag). Image import (Art Browser) and cross-compendium
+**v1.0.2** (2026-11-05, `v1.0.2` tag; fixes search "x"-clear leaving a stale filter). Image import (Art Browser) and cross-compendium
 Actor lookup/import both shipped and verified live, working install recovered after a
 module-folder deletion incident. v1.0.1 fixes the same search-focus bug in the Compendium
 Import dialog. See status.md for details, todo.md for what's next.
@@ -17,5 +17,5 @@ Import dialog. See status.md for details, todo.md for what's next.
 Working directory is "/home/foundry/Projects/contentimporter/"
 Github is "https://github.com/mbackwater42-haven/contentimporter.git" (**public**)
 Install via Setup → Install Module, manifest URL:
-`https://cdn.jsdelivr.net/gh/mbackwater42-haven/contentimporter@v1.0.1/module.json`
+`https://cdn.jsdelivr.net/gh/mbackwater42-haven/contentimporter@v1.0.2/module.json`
 Screenshots are in "/mnt/foundryvtt/data/Data/techsupport/screenshots/"

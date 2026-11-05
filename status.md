@@ -16,10 +16,10 @@ The `/mnt/foundryvtt/data/modules/` folder was deleted entirely at one point (se
 Incidents below), which led to settling on this as the supported install path instead of
 manual folder placement:
 
-- **Setup → Install Module**, manifest URL: `https://cdn.jsdelivr.net/gh/mbackwater42-haven/contentimporter@v1.0.1/module.json`
+- **Setup → Install Module**, manifest URL: `https://cdn.jsdelivr.net/gh/mbackwater42-haven/contentimporter@v1.0.2/module.json`
   Use the jsDelivr URL, not `raw.githubusercontent.com` directly — GitHub's raw CDN cached
   a stale (pre-fix) copy of `module.json` for an extended period after a repo edit;
-  jsDelivr reflected the update immediately. Pinned to the `v1.0.1` tag now instead of
+  jsDelivr reflected the update immediately. Pinned to the `v1.0.2` tag now instead of
   `main` — `module.json`'s own `manifest`/`download` fields point at the same tag, so bump
   both together on each release.
 - `module.json` carries `manifest` + `download` fields (the latter pointing at GitHub's
@@ -115,7 +115,7 @@ over to non-dnd5e systems (e.g. Pathfinder) later.
   `master` history (`--allow-unrelated-histories`, no conflicts), pushed as `main`, set as
   the repo's default branch, and the old `master` branch was deleted from GitHub.
 
-- 2026-11-05: Fixed search-clear bug (post-v1.0.1, committed on `main`, **not yet tagged/released**; live server has the patched files copied in directly). Art Browser and Compendium Import dialog apply search only on Enter/button; the native "x" on `type=search` cleared the input but left `_appliedQuery` / `_query` stale, so category clicks re-filtered with the old term until a hard refresh. Fix: listen for the `search` event (fires on "x") and re-apply when the box is empty. User-confirmed working live 2026-11-05.
+- 2026-11-05: Fixed search-clear bug (released as v1.0.2, 2026-11-05). Art Browser and Compendium Import dialog apply search only on Enter/button; the native "x" on `type=search` cleared the input but left `_appliedQuery` / `_query` stale, so category clicks re-filtered with the old term until a hard refresh. Fix: listen for the `search` event (fires on "x") and re-apply when the box is empty. User-confirmed working live 2026-11-05.
 - 2026-11-05: Dev bind mount is NOT active (Data/modules/content-importer was a stale standalone copy that lagged this repo). Repo is source of truth; sync code/docs into the Data copy manually until the mount is restored (see todo.md).
 
 ## Blockers

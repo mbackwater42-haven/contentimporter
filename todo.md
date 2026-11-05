@@ -27,7 +27,7 @@
 - [x] 2026-11-05: Search-clear ("x") bug fixed in Art Browser + Compendium Import (listen to `search` event). User-confirmed live 2026-11-05.
 
 ## Consider for later
-- [ ] Bump to v1.0.2 (module.json version + manifest/download tag URLs), tag, push.
+- [x] v1.0.2 released 2026-11-05 (tagged, pushed).
 - [ ] Bind mount found inactive 2026-11-05 (Data copy had drifted); re-establish it + fstab entry, or deploy via a script like avautojoin's `deploy.sh`.
 - [ ] Persist the dev bind mount across reboots (add `/etc/fstab` entry) — currently
       manual after any server restart.
