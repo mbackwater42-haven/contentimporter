@@ -24,10 +24,10 @@
       per-keystroke re-render bug, found in a second spot after the Art Browser fix).
 - [x] v1.0.1 installed on the live server, confirmed working in both games.
 
-- [x] 2026-11-05: Search-clear ("x") bug fixed in Art Browser + Compendium Import (listen to `search` event). Awaiting in-game confirmation.
+- [x] 2026-11-05: Search-clear ("x") bug fixed in Art Browser + Compendium Import (listen to `search` event). User-confirmed live 2026-11-05.
 
 ## Consider for later
-- [ ] Confirm "x" clear fix live, then bump to v1.0.2 (module.json version + manifest/download tag URLs), tag, push.
+- [ ] Bump to v1.0.2 (module.json version + manifest/download tag URLs), tag, push.
 - [ ] Bind mount found inactive 2026-11-05 (Data copy had drifted); re-establish it + fstab entry, or deploy via a script like avautojoin's `deploy.sh`.
 - [ ] Persist the dev bind mount across reboots (add `/etc/fstab` entry) — currently
       manual after any server restart.
